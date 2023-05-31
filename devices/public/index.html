@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nest Demo</title>
+    <script src="https://unpkg.com/axios@0.24.0/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/qs@6.10.2/dist/qs.js"></script>
+</head>
+
+<body>
+    <div style="width: 100px; height: 200px; background-color: white">
+        hello
+    </div>
+    <input id="fileInput" type="file" multiple/>
+    <script>
+        // async function urlParam() {
+        //     const res = await axios.get('/api/person/urlParam/xiaobai');
+        //     const res1 = await axios.get('/api/person/urlParam/xiaobai1');
+        //     console.log(res);
+        //     console.log(res1);
+        // }
+        // urlParam();
+
+        // async function query() {
+        //     const res = await axios.get('/api/person/urlQuery', {
+        //         params: {
+        //             name: "xiaobai",
+        //             age: 12
+        //         }
+        //     });
+        //     const res1 = await axios.get('/api/person/urlQuery', {
+        //         params: {
+        //             name: "xiaobai1",
+        //             age: 25
+        //         }
+        //     });
+        //     console.log(res);
+        //     console.log(res1);
+        // }
+        // query();
+
+        // 前端代码使用 post 方式请求，指定 content type 为 application/x-www-form-urlencoded，用 qs 做下 url encode：
+        // async function formUrlencoded() {
+        //     const res = await axios.post(
+        //       '/api/person/formUrlencoded',
+        //       Qs.stringify({
+        //         name: 'xiaobai666',
+        //         age: 12,
+        //       }),
+        //       {
+        //         headers: { 'content-type': 'application/x-www-form-urlencoded' },
+        //       },
+        //     );
+        //     const res1 = await axios.post(
+        //         '/api/person/formUrlencoded',
+        //         Qs.stringify({
+        //             name: 'xiaobai888',
+        //             age: 25,
+        //         }),
+        //         {
+        //             headers: { 'content-type': 'application/x-www-form-urlencoded' },
+        //         },
+        //     );
+        //     console.log(res);
+        //     console.log(res1);
+        // }
+
+        // formUrlencoded();
+
+        // async function json1() {
+        //     // headers 的默认值是json
+        //     const res = await axios.post(
+        //         '/api/person/json',
+        //         {
+        //             name: 'Nicholas',
+        //             age: 12,
+        //         },
+        //     );
+        //     const res1 = await axios.post(
+        //         '/api/person/json',
+        //         {
+        //             name: 'Nicholas',
+        //             age: 25,
+        //         },
+        //     );
+        //     console.log(res);
+        //     console.log(res1);
+        // }
+
+        // json1();
+
+        // 前端代码使用 axios 发送 post 请求，指定 content type 为 multipart/form-data
+        // 注意这个选择的时候，你要按住 Ctrl 进行多选才能选中多个
+        const fileInput = document.querySelector('#fileInput');
+
+        async function formData() {
+            const data = new FormData();
+            data.set('name', 'Nicholas');
+            data.set('age', 25);
+            data.set('file1', fileInput.files[0]);
+            data.set('file2', fileInput.files[1]);
+            data.set('file3', fileInput.files[1]);
+            data.set('file4', fileInput.files[1]);
+            data.set('file5', fileInput.files[1]);
+            data.set('file6', fileInput.files[1]);
+
+            const res = await axios.post('/api/person/file/formData', data, {
+                headers: { 'content-type': 'multipart/form-data' }
+            });
+            
+            console.log(res);
+        }
+
+        fileInput.onchange = formData;
+
+    </script>
+</body>
+
+</html>
