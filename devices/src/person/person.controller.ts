@@ -16,6 +16,7 @@ import { CreatePersonDto } from './dto/create-person.dto';
 import { UpdatePersonDto } from './dto/update-person.dto';
 import { AnyFilesInterceptor } from '@nestjs/platform-express';
 
+// Controller 接收 http 请求，抵用 Services, 得到响应
 @Controller('person')
 export class PersonController {
   constructor(private readonly personService: PersonService) {}

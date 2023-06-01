@@ -12,6 +12,6 @@ async function bootstrap() {
   // 4. 创建 public/index.html
 
   app.useStaticAssets(join(__dirname, '..', 'public'), { prefix: '/static' });
-  await app.listen(3000);
+  await app.listen(3001);
 }
 bootstrap();
